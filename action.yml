@@ -1,0 +1,20 @@
+name: 'Setup Phoesion Glow Reactor service'
+description: 'Setup and start Phoesion Glow Reactor service (debugger is included in the package)'
+inputs:
+  repo:
+    description: 'Repository source'
+    required: false
+    default: 'phoesion.glow'
+  version:
+    description: 'Version of package to install'
+    required: false
+    default: '../'
+  package:
+    description: 'Reactor mode'
+    required: false
+    default: 'Reactor.Headless'
+runs:
+  using: "composite"
+  steps:
+    - run: sudo ${{ github.action_path }}/install2.sh "${{ inputs.repo }}" "${{ inputs.version }}" "${{ inputs.package }}"
+      shell: bash
