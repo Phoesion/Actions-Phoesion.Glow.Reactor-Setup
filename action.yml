@@ -12,8 +12,12 @@ inputs:
     description: 'Reactor mode'
     required: false
     default: 'Reactor.Headless'
+  shell_cmd:
+    description: 'Use speficied command to run installer script (can use `sudo` here if needed)'
+    required: false
+    default: ''
 runs:
   using: "composite"
   steps:
-    - run: sudo ${{ github.action_path }}/install.sh "${{ inputs.repo }}" "${{ inputs.version }}" "${{ inputs.package }}"
+    - run: ${{ inputs.shell_cmd }} ${{ github.action_path }}/install.sh "${{ inputs.repo }}" "${{ inputs.version }}" "${{ inputs.package }}"
       shell: bash
